@@ -1,0 +1,58 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: the_food_backend
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/the_food?useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+
+  data:
+    redis:
+      host: localhost
+      password: 123456
+      port: 6379
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 1
+          time-between-eviction-runs: 10s
+
+  jackson:
+    default-property-inclusion: non_null
+
+
+  #  jpa:
+  #    hibernate:
+  #      ddl-auto: create # or "update" for production use
+  #    properties:
+  #      hibernate:
+  #        format_sql: true
+  #        show_sql: true
+  #
+
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: thefood
+    password: 123456
+    virtual-host: /thefood
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: org.student.backend.pojo.entity
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    org:
+      student:
+        backend:
+          mapper: DEBUG
