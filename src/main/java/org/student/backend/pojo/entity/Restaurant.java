@@ -1,5 +1,6 @@
 package org.student.backend.pojo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,17 +22,19 @@ public class Restaurant {
 
     private Long ownerId;
 
+    @TableField("`name`")
     private String name;
 
+    @TableField("`desc`")
     private String desc;
 
     private String address;
 
     private Double latitude;
+
     private Double longitude;
 
-
-    private String cuisineType;
+    private String type;
 
     private String phone;
 
@@ -46,4 +49,6 @@ public class Restaurant {
 
     private LocalDateTime createdAt;
 
+    /*lazy behavior*/
+    private String foodCategories;
 }

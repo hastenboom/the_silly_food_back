@@ -1,5 +1,6 @@
 package org.student.backend.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.student.backend.pojo.entity.User;
@@ -9,7 +10,7 @@ import org.student.backend.pojo.entity.User;
  */
 
 @Mapper
-public interface UserMapper {
+public interface UserMapper  extends BaseMapper<User> {
 
     @Select("SELECT * FROM user WHERE id = #{id}")
     User selectById(Long id);
@@ -23,6 +24,5 @@ public interface UserMapper {
     void update(User user);
 
 
-    void insert(User user);
 
 }

@@ -14,5 +14,5 @@ public class RedisConstant {
 
     public static final String CACHE_LOGIN_USER = "cache:login:user:";
     /*TimeUnit.DAYS*/
-    public static final Long CACHE_LOGIN_USER_TTL = 30L;
+    public static final Long CACHE_LOGIN_USER_TTL = 30000L;
 }

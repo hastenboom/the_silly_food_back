@@ -1,5 +1,7 @@
 package org.student.backend.util;
 
+import lombok.val;
+
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,5 +39,34 @@ public class MyBeanUtil {
         }
 
         return fieldMap;
+    }
+
+
+    public static <T> T mapToBean(Map<Object, Object> objectMap, Class<T> beanClass) {
+        T bean;
+        try {
+            bean = beanClass.newInstance();
+        }
+        catch (InstantiationException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+
+        Field[] declaredFields = beanClass.getDeclaredFields();
+
+        for (val field : declaredFields) {
+            String fieldName = field.getName();
+            for (val entry : objectMap.entrySet()) {
+                if (fieldName.equals(entry.getKey())) {
+                    try {
+                        field.set(bean, entry.getValue());
+                    }
+                    catch (IllegalAccessException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+
+        }
+        return bean;
     }
 }

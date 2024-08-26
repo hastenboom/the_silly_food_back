@@ -1,5 +1,6 @@
-package org.student.backend.login;
+package org.student.backend.login.service;
 
+import org.student.backend.login.LoginFormDTO;
 import org.student.backend.pojo.common.Result;
 
 /**

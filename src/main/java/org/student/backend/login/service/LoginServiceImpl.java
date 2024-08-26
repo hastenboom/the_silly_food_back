@@ -1,4 +1,4 @@
-package org.student.backend.login;
+package org.student.backend.login.service;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.lang.UUID;
@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.student.backend.login.LoginFormDTO;
+import org.student.backend.login.UserDTO;
 import org.student.backend.mapper.UserMapper;
 import org.student.backend.pojo.common.Result;
 import org.student.backend.pojo.entity.User;
@@ -138,6 +140,8 @@ public class LoginServiceImpl implements LoginService {
 
         stringRedisTemplate.opsForHash()
                 .putAll(CACHE_LOGIN_USER + randomToken, userDTOMap);
+
+        stringRedisTemplate.expire(CACHE_LOGIN_USER + randomToken, CACHE_LOGIN_USER_TTL, TimeUnit.MINUTES);
 
         return randomToken;
     }

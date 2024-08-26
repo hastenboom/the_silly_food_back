@@ -1,12 +1,14 @@
 package org.student.backend.pojo.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
-import org.student.backend.pojo.enumeration.ORDER_STATUS;
 
-import java.time.LocalDateTime;
 
 /**
  * @author Student
@@ -14,6 +16,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@TableName("`order`")
 public class Order {
 
     /**
@@ -21,23 +24,22 @@ public class Order {
      * redis.
      */
     @NonNull
+    @TableId(type= IdType.AUTO)
     private Long id;
 
     private Long userId;
 
     private Long restaurantId;
+    private Long addressId;
 
-    private Long deliveryAddressId;
+    @TableField("credit_card_id")
+    private Long creditCardId;
 
-    private Long totalAmount;
+    private Double totalAmount;
+    private Double deliveryFee;
 
-    private String orderStatus;
+    @TableField("`status`")
+    private String status;
 
-    private LocalDateTime createAt;
-
-    private int totalItem;
-
-    private int totalPrice;
-
-    private ORDER_STATUS status;
+//    private LocalDateTime createAt;
 }

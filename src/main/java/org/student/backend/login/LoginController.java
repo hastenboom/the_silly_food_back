@@ -2,6 +2,7 @@ package org.student.backend.login;
 
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
+import org.student.backend.login.service.LoginService;
 import org.student.backend.pojo.common.Result;
 
 /**
